@@ -1,13 +1,14 @@
 # Merging oauth multiple accounts
 The prototype app implemented in Python and  Flask. It provides functionality to merge user multiple accounts, while they chose different way to log in.
 
+The description is provided in the blog post available here: http://www.vertabelo.com/blog/technical-articles/how-to-store-authentication-data-in-a-database-part-5-merging-multiple-user-accounts
 # App details
 
 The application is based on the provided below database design:
 
-<center>
+
 <img src="http://www.vertabelo.com/_file/github/merging-multiple-oauth-accounts/database_design.png"/>
-</center
+
 
 The prototype app will enable user:
 
