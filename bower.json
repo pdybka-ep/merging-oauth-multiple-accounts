@@ -1,0 +1,13 @@
+{
+  "name": "merging_multiple_oauth_accounts",
+  "authors": [
+    "Patrycja Dybka"
+  ],
+  "description": "Prototype app that shows how to merge multiple user accounts",
+  "main": "app.py",
+  "license": "MIT",
+  "homepage": "",
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}

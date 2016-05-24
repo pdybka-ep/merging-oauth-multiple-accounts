@@ -1,0 +1,79 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-md-12" style="height:100px"></div>
+  </div>
+
+
+    <div class="row">
+
+    <div class="col-md-offset-4 col-md-4">
+    <form class="form-horizontal" method="post" action="">
+        <div class="form-group">
+            <div class="col-md-offset-2">
+                <center><h1 class="lead">Log in</h1></center>
+            </div>
+        </div>
+        <div class="form-group">
+             <label for="inputEmail" class="col-md-2 control-label">Email</label>
+                <div class="col-md-10">
+                    <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email">
+                </div>
+        </div>
+
+         <div class="form-group">
+             <label for="inputPassword" class="col-md-2 control-label">Password</label>
+                <div class="col-md-10">
+                    <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password">
+                </div>
+        </div>
+
+         <div class="form-group">
+
+         </div>
+            <div class="col-md-offset-2" style="padding-bottom:50px">
+                <center>
+                    <button type="submit" class="btn btn-md btn-primary">Log in</button>
+                </center>
+        </div>
+
+    </form>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10" style="border-top:1px solid black; padding-top:50px">
+                 <p>
+                     <a class="btn btn-block btn-social btn-facebook" href="{{ url_for('oauth_authorize', provider='facebook') }}">
+                         <span class="fa fa-facebook"></span>
+                          Log in with Facebook</a>
+                      <a class="btn btn-block btn-social btn-github" href="{{ url_for('oauth_authorize', provider='github') }}">
+                          <span class="fa fa-github"></span>
+                          Log in with Github</a>
+                      <a class="btn btn-block btn-social btn-google" href="{{ url_for('oauth_authorize', provider='google') }}">
+                          <span class="fa fa-google"></span>
+                          Log in with Google</a>
+                      <a class="btn btn-block btn-social btn-linkedin" href="{{ url_for('oauth_authorize', provider='linkedin') }}">
+                          <span class="fa fa-linkedin"></span>
+                          Log in with LinkedIn</a>
+                 </p>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2" style="padding-bottom:50px">
+                <p>Don't have an account? <a href="{{ url_for('create_new_account') }}">Sign up</a></p>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+    </div>
+    </div>
+
+{% endblock %}

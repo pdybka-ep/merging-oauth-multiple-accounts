@@ -1,0 +1,109 @@
+{% extends 'layout.html' %}
+{% from 'macros.html' import icon %}
+{% block body %}
+
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-md-12" style="height:100px"></div>
+  </div>
+
+    <div class="row">
+
+
+        <div class="col-md-4 col-md-offset-2">
+         {%- if current_user.is_authenticated %}
+                <!--<h2 class="lead">Hi, {{ current_user.first_name }}!</h2>-->
+            <h2 class="lead">Hi, {{ current_user.screen_user_name }}!</h2>
+                <p><a class="btn btn-default" href="{{ url_for('logout') }}">Logout</a></p>
+            <div class="row">
+        <div class="col-md-8 ">
+            <div class="form-group">
+                <div class="col-md-offset-5">
+                    {% if connected_providers|count > 0 %}
+                     <h3 class="lead">External logins associated with your account:</h3>
+                     {%- for provider in connected_providers %}
+                        <a class="btn btn-social-icon btn-{{ provider.name }}">
+                         <span class="fa fa-{{ provider.name }}"></span>
+                        </a>
+                        {%- endfor %}
+                    {% else %}
+                    <h3 class="lead"></h3>
+
+                    {% endif %}
+                </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group">
+                <div class="col-md-offset-5">
+                    {% if connected_provider|count < 5 %}
+                        <p>External accounts available to connect:</p>
+                        {%- for provider in unconnected_providers %}
+                        <a class="btn btn-block btn-social btn-{{provider.name}}"
+                            href="{{ url_for('oauth_authorize', provider=provider.name) }}">
+                                <span class="fa fa-{{ provider.name }}"></span>
+                            Add {{provider.name}} login</a>
+                        {%- endfor %}
+                    {% else %}
+                        <p></p>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+        </div>
+        <div class="col-md-4">
+             {% if todos|count > 0 %}
+            <h3 class="lead">Todos</h3>
+            <table id="todo-table" class="table">
+               <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Creation date</th>
+                    <th>Deadline date</th>
+                    <th>Actions</th>
+                </tr>
+                {%- for todo in todos %}
+                    <tr {% if todo.is_done %}class="success"{% endif %}>
+                        <td> {{ loop.index }} </td>
+                        <td {% if todo.is_done %}style="text-decoration:line-through"{% endif %}>{{ todo.name }}</td>
+                        <td>{{ todo.creation_date }}</td>
+                        <td>{{ todo.deadline_date}}</td>
+                        <td>
+                            <form id=isdone action="{{ url_for('mark_done', todo_id=todo.id) }}" method="post">
+                                {#<input class="btn btn-xs btn-default" type="submit" name="mark_done" value="Done"{% if todo.is_done %} disabled{% endif %}>#}
+                                <a onclick="$('#isdone').submit()" class="btn btn-xs btn-default" id="mark_done"{% if todo.is_done %} disabled{% endif %}>{{ icon('check') }} Done</a>
+                            </form>
+                        </td>
+                    </tr>
+                {%- endfor %}
+            </table>
+            {% else %}
+            <h3 class=lead>No Todos Yet</h3>
+            {% endif %}
+            <a class="btn btn-success" href="{{ url_for('new_todo') }}">New todo</a>
+
+        </div>
+
+
+    </div>
+
+
+
+        {% else %}
+        <p>User is not authenticated</p>
+        {% endif %}
+
+
+
+
+</div>
+
+
+{% endblock %}
